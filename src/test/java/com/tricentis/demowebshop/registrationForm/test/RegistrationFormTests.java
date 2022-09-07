@@ -10,11 +10,6 @@ import static io.qameta.allure.Allure.step;
 
 public class RegistrationFormTests extends TestBase {
 
-    /*@BeforeAll
-    static void setUp (){
-        Configuration.baseUrl = "https://demowebshop.tricentis.com";
-    }*/
-
     @Test
     void loginForm() {
         step("Открыть страницу аутентификации", () -> {
