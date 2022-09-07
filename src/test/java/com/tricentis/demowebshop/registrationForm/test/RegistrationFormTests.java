@@ -1,21 +1,37 @@
 package com.tricentis.demowebshop.registrationForm.test;
 
 import com.tricentis.demowebshop.registrationForm.helpers.TestBase;
-import com.tricentis.demowebshop.registrationForm.pages.MainFormPages;
-import com.tricentis.demowebshop.registrationForm.pages.RegistrationFormPages;
 import org.junit.jupiter.api.Test;
+
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+import static io.qameta.allure.Allure.step;
 
 public class RegistrationFormTests extends TestBase {
 
-    RegistrationFormPages registrationFormPages = new RegistrationFormPages();
-    MainFormPages mainFormPages = new MainFormPages();
+    /*@BeforeAll
+    static void setUp (){
+        Configuration.baseUrl = "https://demowebshop.tricentis.com";
+    }*/
 
     @Test
     void loginForm() {
-        registrationFormPages.openPage()
-                .setEmail("test_web_shop@mail.ru")
-                .setPassword("Selenium123")
-                .clickLoginButton();
-        mainFormPages.checkEmailUser("test_web_shop@mail.ru");
+        step("Открыть страницу аутентификации", () -> {
+            open("/login");
+
+        });
+        step("Заполнить поле Email", () -> {
+            $("#Email").setValue("test_web_shop@mail.ru");
+        });
+        step("Заполнить поле Password", () -> {
+            $("#Password").setValue("Selenium123");
+        });
+        step("Нажать на кнопку Log In", () -> {
+            $("[value='Log in']").click();
+        });
+        step("Проверить отображение почты", () -> {
+            $(".header-links-wrapper").shouldHave(text("test_web_shop@mail.ru"));
+        });
     }
 }
