@@ -111,7 +111,7 @@ public class RegisterTests extends BaseTests {
         step("Нажать на кнопку Register",() ->{
             $("#register-button").click();
         });
-        step("Проверить ошибку:  * Wrong email", () ->{
+        step("Проверить наличие ошибки:  * Wrong email", () ->{
             $(By.xpath("//div[@class='page registration-page']"))
                     .shouldHave(text("* Wrong email"));
         });
