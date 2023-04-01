@@ -15,6 +15,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
+@Owner("allure8")
+@Feature("Регистрация")
 public class RegisterTests extends BaseTests {
 
     Faker faker = new Faker();
@@ -24,6 +26,7 @@ public class RegisterTests extends BaseTests {
     String password = faker.internet().password();
 
     @Test
+    @Deprecated
     @DisplayName("Ошибки на пустые поля в блоке 'Register'")
     void errorAllEmptyFieldsRegPage() {
         step("Открыть страницу", () -> {
@@ -77,6 +80,7 @@ public class RegisterTests extends BaseTests {
     }
 
     @Test
+    @Deprecated
     @DisplayName("Ошибка на некорректную почту в поле 'Email'")
     void errorIncorrectEmailsRegPag1e() {
         step("Открыть страницу Register", () -> {
@@ -97,8 +101,6 @@ public class RegisterTests extends BaseTests {
     @AllureId("16711")
     @DisplayName("Ошибка на некорректную почту в поле Email")
     @Tag("web")
-    @Owner("allure8")
-    @Feature("Регистрация")
     void errorIncorrectEmailsRegPage() {
         step("Открыть страницу регистрации", () ->{
             open("/register");
