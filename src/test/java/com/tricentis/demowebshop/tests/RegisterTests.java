@@ -24,6 +24,7 @@ public class RegisterTests extends BaseTests {
     Name firstName = faker.name();
     Name lastName = faker.name();
     String password = faker.internet().password();
+    String incorrectPassword = faker.internet().password(1,5);
 
     @Test
     @Deprecated
@@ -114,6 +115,25 @@ public class RegisterTests extends BaseTests {
         step("Проверить наличие ошибки:  * Wrong email", () ->{
             $(By.xpath("//div[@class='page registration-page']"))
                     .shouldHave(text("* Wrong email"));
+        });
+    }
+
+    @Test
+    @DisplayName("Ошибка на некорректную почту в поле Password")
+    @Tag("web")
+    void errorIncorrectPasswordRegPage() {
+        step("Открыть страницу регистрации", () ->{
+            open("/register");
+        });
+        step("В поле Password ввести некорректную почту", () ->{
+            $("#Password").setValue(incorrectPassword);
+        });
+        step("Нажать на кнопку Register",() ->{
+            $("#register-button").click();
+        });
+        step("Проверить наличие ошибки:  * Wrong email", () ->{
+            $(By.xpath("//div[@class='page registration-page']"))
+                    .shouldHave(text("The password should have at least 6 characters."));
         });
     }
 }
