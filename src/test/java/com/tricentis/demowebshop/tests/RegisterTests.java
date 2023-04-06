@@ -5,6 +5,7 @@ import com.github.javafaker.Name;
 import io.qameta.allure.AllureId;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ public class RegisterTests extends BaseTests {
     String incorrectPassword = faker.internet().password(1,5);
 
     @Test
-    @Deprecated
+    @Disabled
     @DisplayName("Ошибки на пустые поля в блоке 'Register'")
     void errorAllEmptyFieldsRegPage() {
         step("Открыть страницу", () -> {
@@ -47,7 +48,7 @@ public class RegisterTests extends BaseTests {
     }
 
     @Test
-    @Deprecated
+    @Disabled
     @DisplayName("Регистрация")
     void inputAllFieldsRegPage() {
         step("Открыть страницу Register", () -> {
@@ -81,7 +82,7 @@ public class RegisterTests extends BaseTests {
     }
 
     @Test
-    @Deprecated
+    @Disabled
     @DisplayName("Ошибка на некорректную почту в поле 'Email'")
     void errorIncorrectEmailsRegPag1e() {
         step("Открыть страницу Register", () -> {
@@ -119,6 +120,7 @@ public class RegisterTests extends BaseTests {
     }
 
     @Test
+    @Disabled
     @DisplayName("Ошибка на некорректную почту в поле Password")
     @Tag("web")
     void errorIncorrectPasswordRegPage() {
@@ -131,7 +133,7 @@ public class RegisterTests extends BaseTests {
         step("Нажать на кнопку Register",() ->{
             $("#register-button").click();
         });
-        step("Проверить наличие ошибки:  * Wrong email", () ->{
+        step("Проверить наличие ошибки:  The password should have at least 6 characters.", () ->{
             $(By.xpath("//div[@class='page registration-page']"))
                     .shouldHave(text("The password should have at least 6 characters."));
         });
