@@ -102,9 +102,9 @@ test {
     useJUnitPlatform()
 }
 
-task auth(type: Test) {
+task web(type: Test) {
     useJUnitPlatform {
-        includeTags "auth"
+        includeTags "web"
         //excludeTags "simple"
     }
 }
