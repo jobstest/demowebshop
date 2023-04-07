@@ -100,6 +100,7 @@ allure {
 
 test {
     useJUnitPlatform()
+    systemProperties(System.getProperties())
 }
 
 task web(type: Test) {
